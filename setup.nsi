@@ -7,7 +7,7 @@ RequestExecutionLevel admin
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "ApdThumbExt"
-!define PRODUCT_VERSION "1.0"
+!define PRODUCT_VERSION "1.1"
 !define PRODUCT_PUBLISHER "teraapi"
 !define PRODUCT_WEB_SITE "http://teraapi.com/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\ApdThumbExt"
@@ -64,7 +64,7 @@ ${If} ${RunningX64}
 !define LIBRARY_X64
 !define LIBRARY_SHELL_EXTENSION
 !define LIBRARY_COM
-!insertmacro InstallLib REGDLL NOTSHARED REBOOT_PROTECTED "..\x64\Release64\ApdThumbExt64.dll" "$INSTDIR\ApdThumbExt64.dll" "$INSTDIR"
+!insertmacro InstallLib REGDLL NOTSHARED REBOOT_PROTECTED "..\Release64\ApdThumbExt64.dll" "$INSTDIR\ApdThumbExt64.dll" "$INSTDIR"
 !undef LIBRARY_X64
 !undef LIBRARY_SHELL_EXTENSION
 !undef LIBRARY_COM
@@ -72,7 +72,7 @@ ${If} ${RunningX64}
 ${Else}
 !define LIBRARY_SHELL_EXTENSION
 !define LIBRARY_COM
-  !insertmacro InstallLib REGDLL NOTSHARED REBOOT_PROTECTED "..\Release\ApdThumbExt.dll" "$INSTDIR\ApdThumbExt.dll" "$INSTDIR"
+  !insertmacro InstallLib REGDLL NOTSHARED REBOOT_PROTECTED "..\Release32\ApdThumbExt32.dll" "$INSTDIR\ApdThumbExt32.dll" "$INSTDIR"
 !undef LIBRARY_SHELL_EXTENSION
 !undef LIBRARY_COM
 ${Endif}
@@ -162,7 +162,7 @@ ${If} ${RunningX64}
 ${Else}
   !define LIBRARY_SHELL_EXTENSION
   !define LIBRARY_COM
-  !insertmacro UninstallLib REGDLL NOTSHARED REBOOT_PROTECTED "$INSTDIR\ApdThumbExt.dll"
+  !insertmacro UninstallLib REGDLL NOTSHARED REBOOT_PROTECTED "$INSTDIR\ApdThumbExt32.dll"
   !undef LIBRARY_SHELL_EXTENSION
   !undef LIBRARY_COM
 ${Endif}
@@ -170,7 +170,7 @@ ${Endif}
 ${If} ${RunningX64}
   Delete "$INSTDIR\ApdThumbExt64.dll"
 ${Else}
-  Delete "$INSTDIR\ApdThumbExt.dll"
+  Delete "$INSTDIR\ApdThumbExt32.dll"
 ${Endif}
 
   Delete "$SMPROGRAMS\ApdThumbExt\Uninstall.lnk"
@@ -181,6 +181,7 @@ ${Endif}
 ${If} ${RunningX64}
   DeleteRegKey HKCU "Software\Classes\CLSID\{0A18F5AA-0057-4B78-8DD9-8EAFDB078393}"
   DeleteRegKey HKCU "Software\Classes\.apd\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}"
+  DeleteRegKey HKCU "Software\Classes\.adw\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}"
 ${Endif}
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"

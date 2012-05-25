@@ -205,6 +205,7 @@ STDAPI DllRegisterServer()
             {HKEY_CURRENT_USER,   L"Software\\Classes\\CLSID\\" SZ_CLSID_APDTHUMBHANDLER L"\\InProcServer32",             NULL,                           szModuleName},
             {HKEY_CURRENT_USER,   L"Software\\Classes\\CLSID\\" SZ_CLSID_APDTHUMBHANDLER L"\\InProcServer32",             L"ThreadingModel",              L"Apartment"},
             {HKEY_CURRENT_USER,   L"Software\\Classes\\.apd\\ShellEx\\{e357fccd-a995-4576-b01f-234630154e96}",            NULL,                           SZ_CLSID_APDTHUMBHANDLER},
+            {HKEY_CURRENT_USER,   L"Software\\Classes\\.adw\\ShellEx\\{e357fccd-a995-4576-b01f-234630154e96}",            NULL,                           SZ_CLSID_APDTHUMBHANDLER},
         };
 
         hr = S_OK;
@@ -232,7 +233,8 @@ STDAPI DllUnregisterServer()
     const PCWSTR rgpszKeys[] =
     {
         L"Software\\Classes\\CLSID\\" SZ_CLSID_APDTHUMBHANDLER,
-        L"Software\\Classes\\.apd\\ShellEx\\{e357fccd-a995-4576-b01f-234630154e96}"
+        L"Software\\Classes\\.apd\\ShellEx\\{e357fccd-a995-4576-b01f-234630154e96}",
+        L"Software\\Classes\\.adw\\ShellEx\\{e357fccd-a995-4576-b01f-234630154e96}"
     };
 
     // Delete the registry entries
